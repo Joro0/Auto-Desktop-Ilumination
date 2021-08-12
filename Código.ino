@@ -16,8 +16,6 @@ void setup() {
               //B2:   Luz LDR       (IN) - LDR=1: no hay luz
               //B3:   LED           (OUT)
   
-  Serial.begin(9600);
-
   //TIMER2
   TCCR2A=0x00;
   TCCR2B=0x07;
@@ -47,8 +45,8 @@ void ChekeoGeneral(){                                   //Reviso si hay personas
   Serial.print(cont);
   Serial.print("\n");
   
-  if (cont>0 && bitRead(PINB,2)) bitWrite(PORTB,3,1);   //prendo LED
-  else bitWrite(PORTB,3,0);                             //apago LED
+  if (cont>0 && bitRead(PINB,2)) bitWrite(PORTB,3,1);   //prendo LED si hay personas y está oscuro
+  else bitWrite(PORTB,3,0);                             //apago LED si no hay personas o hay luz
 }
 
 void ChekeoPresencia(){                                 //Reviso si alguien entró por completo
@@ -58,34 +56,21 @@ void ChekeoPresencia(){                                 //Reviso si alguien entr
     switch(PINB&0x03){
       case 0x02:                                        //Espero cambio
         aux=0;
-        Serial.print("Espero");
-        Serial.print("\n");
         TCNT2=0x00;                                     //seteo contador
         temp=0;
-        
         break;
 
-      case 0x01:                                        //Posible entrada, prendo led momentaneo    
+      case 0x01:                                        //Posible entrada (prendo led momentaneo)    
       case 0x00:
         aux=1;
-        Serial.print("Posible Entrada");
-        Serial.print("\n");
-        if (bitRead(PINB,2)) {
-          bitWrite(PORTB,3,1);
-          Serial.print("LED MOMENTANEA ON");
-          Serial.print("\n");
-        }
+        if (bitRead(PINB,2)) bitWrite(PORTB,3,1);
         TCNT2=0x00;                                     //seteo contador
         temp=0;
         break;
 
       case 0x03:                                        //Confirmación si entró o salió por completo
-        Serial.print("Confirmacion Entro o Salio");
-        Serial.print("\n");
-        
         sei();                                          //activo contador
-        
-        if (temp>=122){                                   //Confirmo luego de 2 segundos
+        if (temp>=122){                                 //Confirmo luego de 2 segundos (2 seg = 122)
           if (aux==1) cont+=1;
           cli();                                        //desactivo contador
           ciclo=false;
@@ -105,32 +90,23 @@ void ChekeoAusencia(){
     switch(PINB&0x03){
       case 0x01:                                        //Espero cambio
         aux=0;
-        Serial.print("Espero");
-        Serial.print("\n");
         TCNT2=0x00;                                     //seteo contador
         temp=0;
-        
         break;
 
       case 0x02:                                        //Posible salida   
       case 0x00:
         aux=1;
-        Serial.print("Posible Salida");
-        Serial.print("\n");
         TCNT2=0x00;                                     //seteo contador
         temp=0;
         break;
 
       case 0x03:                                        //Confirmación si salió o entró por completo
-        Serial.print("Confirmacion Salio o Entro");
-        Serial.print("\n");
-        
         sei();                                          //activo contador
-        
         if (temp>=122){                                 //Confirmo luego de 2 segundos
           if (aux==1 && cont>0) cont-=1;
           cli();                                        //desactivo contador
-          ciclo=false;                                  //termino ciclo
+          ciclo=false;
         }
         break;
         
