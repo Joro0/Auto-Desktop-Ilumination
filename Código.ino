@@ -25,7 +25,7 @@ void setup() {
 }
 
 void loop() {
-  switch(PINB&0x03){
+  switch(PINB&0x03){            //chekeo el valor de los 2 sensores IR
     case 0x03:
       ChekeoGeneral();
       break;
@@ -70,7 +70,7 @@ void ChekeoPresencia(){                                 //Reviso si alguien entr
 
       case 0x03:                                        //Confirmación si entró o salió por completo
         sei();                                          //activo contador
-        if (temp>=122){                                 //Confirmo luego de 2 segundos (2 seg = 122)
+        if (temp>=61){                                  //Confirmo luego de 1 segundo (1 seg: temp = 61)
           if (aux==1) cont+=1;
           cli();                                        //desactivo contador
           ciclo=false;
@@ -103,7 +103,7 @@ void ChekeoAusencia(){
 
       case 0x03:                                        //Confirmación si salió o entró por completo
         sei();                                          //activo contador
-        if (temp>=122){                                 //Confirmo luego de 2 segundos
+        if (temp>=61){                                  //Confirmo luego de 1 segundo
           if (aux==1 && cont>0) cont-=1;
           cli();                                        //desactivo contador
           ciclo=false;
