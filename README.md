@@ -1,4 +1,4 @@
-# Auto-Desktop-Ilumination
+# Iluminación Automáica de Escritorio
 Este proyecto lo hice para iluminar mi escritorio sin la necesidad de tener que buscar el switch o algun otro tipo de activador para que prendan. 
 Esta echo para que las luces se prendan automáticamente cuando sepa que hay alguien que está en el escritorio y hay poca luz para trabajar.
 
