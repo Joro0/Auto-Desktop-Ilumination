@@ -9,7 +9,7 @@ void ChekeoPresencia();
 void ChekeoAusencia();
 
 void setup() {
-  cli();
+  cli();      //deshabilito interrupciones para configuración
   
   //PUERTOS
   DDRB=0x08;  //B0,1: Infrarojo 1,2 (IN) - IR=0: obstáculo
