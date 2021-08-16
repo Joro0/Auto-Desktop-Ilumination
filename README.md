@@ -1,7 +1,6 @@
 # Auto-Desktop-Ilumination
 Este proyecto lo hice para iluminar mi escritorio sin la necesidad de tener que buscar el switch o algun otro tipo de activador para que prendan. 
 Esta echo para que las luces se prendan automáticamente cuando sepa que hay alguien que está en el escritorio y hay poca luz para trabajar.
-Además, preferí usar componentes baratos y alcanzables para cualquiera.
 
 Este proyecto está basado en solo 2 tipos de sensores:
   1. LDR sensor
