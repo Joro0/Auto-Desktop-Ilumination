@@ -6,7 +6,7 @@ Lo tienen por ejemplo:
  - Arduino nano
  - Arduino pro mini
 
-### SENSOR LDR
+### SENSOR DE LUZ (LDR)
 El LDR es una resistencia que varía su valor con la presencia de la luz.
 Podemoso realizar o comprar un módulo que nos dará como resultado un valor digital. (será más fácil para el arduino trabajar con eso)
 
@@ -19,8 +19,13 @@ El circuito se basa principalmente en un Op Amp como comparador y un potencióme
 ![image](https://user-images.githubusercontent.com/88784932/129648604-c6dad051-dde7-4dd5-bb13-851ed4dcc607.png)
 
 
-### SENSOR IR
-En general, su funcionamiento consiste en un emisor y receptor de luz infrarroja. 
+### SENSOR DE DISTANCIA (IR)
+Su funcionamiento se basa principalmente en la emisión y recepción de luz infrarroja. 
+Para este proyecto se optó por el sensor: SHARP GP2Y0A21
+
+![image](https://user-images.githubusercontent.com/88784932/129664327-c8058edf-653e-47d5-8487-3cccffb10026.png)
+
+Tiene un rango de 10 a 80cm, y el área donde emite y recibe la información es vertical. 
 
 
 RELAY
